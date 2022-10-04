@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import 'antd/dist/antd.css';
+import './SignupPage.less';
 import SignupModal from '../../Components/SignupModal/SignupModal'
 import { useDispatch } from 'react-redux';
 
