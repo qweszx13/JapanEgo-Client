@@ -1,9 +1,10 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import './SignupPage.less';
 import SignupModal from '../../Components/SignupModal/SignupModal'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 const navigation = [
@@ -14,6 +15,9 @@ const navigation = [
 ]
 
 export default function SignupPage() {
+  
+  const navigate = useNavigate();
+
   const modalDispatch = useDispatch(); 
 
   const switchModalDispatch = ()=>{
@@ -39,7 +43,7 @@ export default function SignupPage() {
               <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
                 <div className="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">
                   <div className="flex w-full items-center justify-between md:w-auto">
-                    <a href="#">
+                    <a href="##">
                       <span className="sr-only">Your Company</span>
                       <img
                         alt="Your Company"
@@ -61,7 +65,7 @@ export default function SignupPage() {
                       {item.name}
                     </a>
                   ))}
-                  <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href="##" className="font-medium text-indigo-600 hover:text-indigo-500">
                     Log in
                   </a>
                 </div>
@@ -108,7 +112,7 @@ export default function SignupPage() {
                       </a>
                     ))}
                   </div>
-                  <a
+                  <a href="##"
                     className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
                   >
                     Log in
@@ -130,14 +134,17 @@ export default function SignupPage() {
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <a
-                    href="#"
+                    href="##"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-stone-600 px-8 py-3 text-base font-medium text-white hover:bg-stone-700 md:py-4 md:px-10 md:text-lg hover:text-stone-800"
+                    onClick={()=>{
+                      navigate("/Main");
+                    }}
                   >
                     今始める
                   </a>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
+                  <a href="##"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-stone-200 px-8 py-3 text-base font-medium text-stone-700 hover:bg-stone-300 md:py-4 md:px-10 md:text-lg hover:text-gray-100"
                     onClick={()=>{
                       switchModalDispatch();

@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import MainPage from './Page/MainPage/MainPage'
 import SignupPage from './Page/SignupPage/SignupPage';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -26,7 +28,12 @@ const signupStore = createStore(signupReducer);
 root.render(
   <React.StrictMode>
     <Provider store={signupStore}>  
-      <SignupPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<SignupPage/>} />
+          <Route path="/Main" exact element={<MainPage/>} />
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

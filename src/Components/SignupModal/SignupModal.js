@@ -1,12 +1,10 @@
-import { hover } from "@testing-library/user-event/dist/hover";
 import { Modal,Button,Form,Input,Checkbox,AutoComplete,Row,Col } from "antd";
-import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 
 
 export default function SignupModal(){
-  const [isModalOpen, setIsModalOpen] = useState(true);
   const modalDispatch = useDispatch();
+  const [form] = Form.useForm();
   
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
@@ -20,9 +18,19 @@ export default function SignupModal(){
   const handleOk = () => {
     form.submit();
   };
+  const handleSuccess = () =>{
+    alert("값 들어옴 ㅇㅇ");
+    form.resetFields();
+    switchModalDispatch();
+  }
+
+  const handleFailed = ()=>{
+    alert("값입력해주셈");
+  }
 
   const handleCancel = () => {
     switchModalDispatch();
+    form.resetFields();
   };
   /*모달 관련 문 끝 */
 
@@ -57,7 +65,6 @@ export default function SignupModal(){
     },
   };
 
-  const [form] = Form.useForm();
   return(
     <div>
       <Modal
@@ -70,7 +77,8 @@ export default function SignupModal(){
         {...formItemLayout}
         form={form}
         name="register"
-        //onFinish={}
+        onFinish={handleSuccess}
+        onFinishFailed={handleFailed}
         scrollToFirstError
         >
           <Form.Item
@@ -107,12 +115,12 @@ export default function SignupModal(){
                 message: "유효하지 않은 이메일 입니다!",
               },
               {
-                //required: true,
+                required: true,
                 message: "이메일을 입력해주세요!",
               },
               {
-                pattern:".+@email\.daelim\.ac\.kr",
-                message:"email.daelim.ac.kr로 가입해주세요",
+                //pattern:".+@email\.daelim\.ac\.kr",           이메일 패턴 설정 부문
+                //message:"email.daelim.ac.kr로 가입해주세요",
               },
             ]}
           >
@@ -192,7 +200,6 @@ export default function SignupModal(){
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-
                   return Promise.reject(
                     new Error("비밀번호와 일치하지 않습니다!")
                   );
@@ -232,6 +239,7 @@ export default function SignupModal(){
             valuePropName="checked"
             rules={[
               {
+                required: true,
                 validator: (_, value) =>
                   value
                     ? Promise.resolve()
@@ -243,7 +251,7 @@ export default function SignupModal(){
             {...tailFormItemLayout}
           >
             <Checkbox>
-              <a href="">개인정보 처리방침</a>에 동의합니다
+              <a href="##">개인정보 처리방침</a>에 동의합니다
             </Checkbox>
           </Form.Item>
           
@@ -251,8 +259,9 @@ export default function SignupModal(){
          
         </div>
         <div>
-          <a className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-black hover:bg-gray-100 hover:text-indigo-400"
-            onClick={switchModalDispatch}>확인 한자로 변경요망
+          <a href="##"
+            className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-black hover:bg-gray-100 hover:text-indigo-400"
+            onClick={handleOk}>확인 한자로 변경요망
           </a>
         </div>
       </Modal>
