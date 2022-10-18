@@ -3,7 +3,7 @@ import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import 'antd/dist/antd.min.css';
 import './SignupPage.less';
-import SignupModal from '../../Components/SignupModal/SignupModal'
+import SignupModal from '../../Components/SignupPageCom/SignupModal/SignupModal'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 

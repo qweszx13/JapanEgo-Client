@@ -10,24 +10,36 @@ import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function signupReducer(currentState,action){
+function Reducer(currentState,action){
   if(currentState === undefined){
     return{
       modalSwitch:false,
+      sectionArray:[]
     };
   }
   const newState = {...currentState};
+  //모달용
   if(action.type === "SWITCH"){
     newState.modalSwitch = !newState.modalSwitch;
   }
+  if(action.type === "SETSECTION"){
+
+    const av = action.valuse;
+    newState.sectionArray = [av.mbtiKinds,av.mbtiExplanation,av.mbtiCharacteristic,av.mbtiTyoe,av.color];
+
+    return newState;
+  }
+  
   return newState;
+  //
 } 
 
-const signupStore = createStore(signupReducer);
+const Store = createStore(Reducer);
+
 
 root.render(
   <React.StrictMode>
-    <Provider store={signupStore}>  
+    <Provider store={Store}>  
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<SignupPage/>} />
