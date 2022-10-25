@@ -13,23 +13,32 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 function Reducer(currentState,action){
   if(currentState === undefined){
     return{
-      modalSwitch:false,
-      sectionArray:[]
+      signupModalSwitch:false,
+      //회원가입모달
+      loginModalSwitch:false,
+      //로그인모달-SingupPage()
+      userStatus:false,
+      //신규유저 인가? True,False-SignupPage(TestModal)
+      mainPageStatus:0,
+      //0->Home,1->Book,2->Test,3->Chart 메인페이지상태용
+
     };
   }
   const newState = {...currentState};
   //모달용
-  if(action.type === "SWITCH"){
-    newState.modalSwitch = !newState.modalSwitch;
+  if(action.type === "SIGNUP_SWITCH"){
+    newState.signupModalSwitch = !newState.signupModalSwitch;
   }
-  if(action.type === "SETSECTION"){
-
-    const av = action.valuse;
-    newState.sectionArray = [av.mbtiKinds,av.mbtiExplanation,av.mbtiCharacteristic,av.mbtiTyoe,av.color];
-
-    return newState;
+  if(action.type === "LOGIN_SWITCH"){
+    console.log("???")
+    newState.loginModalSwitch = !newState.loginModalSwitch;
+  } 
+  if(action.type === "NEW_USER_STATUS"){
+    newState.userStatus = !newState.userStatus;
   }
-  
+  if(action.type === "PAGE_SWITCH"){
+    newState.mainPageStatus = action.pageNum;
+  }
   return newState;
   //
 } 

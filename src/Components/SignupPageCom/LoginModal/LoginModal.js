@@ -1,29 +1,47 @@
-import { Modal,Button,Form,Input,Checkbox,Row,Col } from "antd";
+import { Modal,Button,Form,Input,Row,Col } from "antd";
 import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import '../../../GlobalStyle/antModalStyle.css';
+import TestModal from "../TestModal/TestModal";
 
 
-export default function SignupModal(){
+export default function LoginModal(){
   const modalDispatch = useDispatch();
   const [form] = Form.useForm();
   
-  
+  const navigate = useNavigate();
+
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
-    return state.signupModalSwitch
+    return state.loginModalSwitch
   })
   
   const switchModalDispatch = ()=>{
-    modalDispatch({type:"SIGNUP_SWITCH"})
+    modalDispatch({type:"LOGIN_SWITCH"});
   }
-
+  const changeModalDispatch = ()=>{
+    modalDispatch({type:"LOGIN_SWITCH"});
+    form.resetFields();
+    modalDispatch({type:"SIGNUP_SWITCH"});
+  }
+  
   const handleOk = () => {
     form.submit();
   };
+  
   const handleSuccess = () =>{
     alert("값 들어옴 ㅇㅇ");
     form.resetFields();
-    switchModalDispatch();
+    let dummyUserStatus = true;//               더미 데이터 true= 신규 false= 구회원
+    
+    if(dummyUserStatus === true){//신규
+      modalDispatch({type:"NEW_USER_STATUS"});
+      switchModalDispatch();
+    }else{//구회원
+      switchModalDispatch();
+      navigate("/Main");
+    }
+    
   }
 
   const handleFailed = ()=>{
@@ -54,25 +72,13 @@ export default function SignupModal(){
       },
     },
   };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
 
   return(
     <div>
       <Modal
         open={modalSwitch}
         onCancel={handleCancel}
-        title="JapanEgo 회원가입"
+        title="JapanEgo 로그인"
         footer={null}
         >
         <div>
@@ -97,23 +103,13 @@ export default function SignupModal(){
               {
                 required: true,
                 message: "이메일을 입력해주세요!",
-              },
-              {
-                //pattern:".+@email\.daelim\.ac\.kr",           이메일 패턴 설정 부문
-                //message:"email.daelim.ac.kr로 가입해주세요",
-              },
+              }
             ]}
           >
             <Row gutter={8}>
-              <Col span={14}>
+              <Col span={24}>
                 <Input /*ref={email}*/ name="user_email" />
               </Col>  
-              <Col span={8}>
-                <Button 
-                /*onClick={()=>{onEmailCheck()}}*/
-                /*loading={myLoading}*/
-                >이메일 인증</Button>
-              </Col>
             </Row>
           </Form.Item>
               
@@ -164,71 +160,21 @@ export default function SignupModal(){
           >
             <Input.Password />
           </Form.Item>
-
-          <Form.Item
-            name="confirm"
-            label="비밀번호 확인"
-            dependencies={["password"]}
-            hasFeedback
-            rules={[
-              {
-                required: true,
-                message: "비밀번호 확인을 입력해주세요!",
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(
-                    new Error("비밀번호와 일치하지 않습니다!")
-                  );
-                },
-              }),
-            ]}
-          >
-              <Input.Password />
-            </Form.Item>
-
-          <Form.Item
-            name="introduction"
-            label="닉네임"
-          >
-            <Input name="introduction"/>
-          </Form.Item>
-              
-          
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                required: true,
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(
-                        new Error("개인정보 처리방침에 동의해주세요!")
-                      ),
-              },
-            ]}
-            {...tailFormItemLayout}
-          >
-            <Checkbox>
-              <a href="##">개인정보 처리방침</a>에 동의합니다
-            </Checkbox>
-          </Form.Item>
-          
         </Form>
-         
+        <div className="text-center">
+          아직 가입하지않으셨나요? <a href="##" onClick={()=>{
+            changeModalDispatch();
+          }}>회원가입</a>
+        </div>
         </div>
         <div>
           <a href="##"
             className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-black hover:bg-gray-100 hover:text-indigo-400"
-            onClick={handleOk}>제출
+            onClick={handleOk}>로그인
           </a>
         </div>
       </Modal>
+      <TestModal></TestModal>
     </div>
   );
 
