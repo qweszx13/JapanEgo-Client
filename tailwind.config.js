@@ -14,10 +14,15 @@ module.exports = {
           '0%': { transform: 'scale(0)'},
           '70%': { transform: 'scale(1)'}
         },
+        smoothy:{
+          '0%': { opacity: 0 },
+          '70%': { opacity: 1 }
+        }
       },
       animation:{
         beat:'beat 1s',
-        appear:'appear 1s'
+        appear:'appear 1s',
+        smoothy:'smoothy 1s'
       }
     },
   },

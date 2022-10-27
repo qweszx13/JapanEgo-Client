@@ -1,4 +1,4 @@
-import { Modal,Checkbox,Form,Input,Row,Col } from "antd";
+import { Modal,Checkbox,Form } from "antd";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import '../../../GlobalStyle/antModalStyle.css';

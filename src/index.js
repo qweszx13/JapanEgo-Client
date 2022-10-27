@@ -10,7 +10,11 @@ import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+
+
 function Reducer(currentState,action){
+  
+  
   if(currentState === undefined){
     return{
       signupModalSwitch:false,
@@ -20,7 +24,7 @@ function Reducer(currentState,action){
       userStatus:false,
       //신규유저 인가? True,False-SignupPage(TestModal)
       mainPageStatus:0,
-      //0->Home,1->Book,2->Test,3->Chart 메인페이지상태용
+      //0->Ego,1->Vocabulary,2->Test,3->Chart 메인페이지상태용
 
     };
   }
@@ -46,8 +50,10 @@ function Reducer(currentState,action){
 const Store = createStore(Reducer);
 
 
+
+
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={Store}>  
       <BrowserRouter>
         <Routes>
@@ -56,7 +62,7 @@ root.render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

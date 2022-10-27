@@ -30,6 +30,7 @@ export default function SignupPage() {
     modalDispatch({type:"LOGIN_SWITCH"})
   }
   
+  
   return (
     <div className="relative overflow-hidden bg-white">
       

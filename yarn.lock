@@ -2453,6 +2453,11 @@
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@yarnpkg/lockfile@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
+  integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
   resolved "https://registry.npmjs.org/abab/-/abab-2.0.6.tgz"
@@ -3316,6 +3321,11 @@ commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
+
+commander@^9.4.0:
+  version "9.4.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
+  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
 
 common-path-prefix@^3.0.0:
   version "3.0.0"
@@ -6453,12 +6463,12 @@ ms@2.0.0:
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
   integrity sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==
 
-ms@2.1.2, ms@^2.1.1:
+ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-ms@2.1.3:
+ms@2.1.3, ms@^2.1.1:
   version "2.1.3"
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
@@ -8018,6 +8028,13 @@ react-error-overlay@^6.0.11:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
 
+react-infinite-scroll-component@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz#7e511e7aa0f728ac3e51f64a38a6079ac522407f"
+  integrity sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==
+  dependencies:
+    throttle-debounce "^2.1.0"
+
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -8380,12 +8397,12 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-safe-buffer@5.1.2, safe-buffer@>=5.1.0, safe-buffer@^5.1.0, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-safe-buffer@5.2.1, safe-buffer@~5.2.0:
+safe-buffer@5.2.1, safe-buffer@>=5.1.0, safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
@@ -9065,6 +9082,11 @@ throat@^6.0.1:
   resolved "https://registry.npmjs.org/throat/-/throat-6.0.1.tgz"
   integrity sha512-8hmiGIJMDlwjg7dlJ4yKGLK8EsYqKgPWbG3b4wjJddKNwc7N7Dpn08Df4szr/sZdMVeOstrdYSsqzX6BYbcB+w==
 
+throttle-debounce@^2.1.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
+  integrity sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==
+
 thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.npmjs.org/thunky/-/thunky-1.1.0.tgz"
@@ -9160,7 +9182,7 @@ tslib@^1.8.1:
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3, tslib@^2.3.0:
+tslib@^2.0.3, tslib@^2.3.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
@@ -9860,6 +9882,16 @@ yargs@^16.2.0:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+yarn-deduplicate@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/yarn-deduplicate/-/yarn-deduplicate-6.0.0.tgz#91bc0b7b374efe24796606df2c6b00eabb5aab62"
+  integrity sha512-HjGVvuy10hetOuXeexXXT77V+6FfgS+NiW3FsmQD88yfF2kBqTpChvMglyKUlQ0xXEcI77VJazll5qKKBl3ssw==
+  dependencies:
+    "@yarnpkg/lockfile" "^1.1.0"
+    commander "^9.4.0"
+    semver "^7.3.7"
+    tslib "^2.4.0"
 
 yn@3.1.1:
   version "3.1.1"
