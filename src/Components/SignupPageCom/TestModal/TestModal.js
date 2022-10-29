@@ -1,7 +1,7 @@
 import { Modal,Checkbox,Form } from "antd";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import '../../../GlobalStyle/antModalStyle.css';
+//import '../../../GlobalStyle/ModalStyle/antModalStyle.css';
 
 
 export default function TestModal(){

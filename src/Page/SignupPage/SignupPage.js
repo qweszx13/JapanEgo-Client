@@ -32,22 +32,22 @@ export default function SignupPage() {
   
   
   return (
-    <div className="relative overflow-hidden bg-white">
+    <div className="relative overflow-hidden bg-white w-full">
       
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-full">
         <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
           <svg
-            className="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-white lg:block"
+            className="absolute inset-y-0 right-0 hidden h-full w-68 translate-x-1/2 transform text-white lg:block"
             fill="currentColor"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <polygon points="50,0 100,0 50,150 0,100" />
+            <polygon points="50,0 100,0 30,200 0,100" />
           </svg>
 
           <Popover>
-            <div className="relative px-4 pt-6 sm:px-6 lg:px-8">
+            <div className="relative px-4 pt-6 pl-0 sm:px-6 lg:px-8">
               <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
                 <div className="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">
                   <div className="flex w-full items-center justify-between md:w-auto">

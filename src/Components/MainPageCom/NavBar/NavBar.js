@@ -63,11 +63,11 @@ export default function NavBar(){
           })
           }
         </div>
-        <div id="logo" className="text-4xl sm:text-[4rem]  w-2/4 h-full flex justify-center items-center ">
+        <div id="logo" className="text-4xl w-fit mr-4 sm:text-[4rem] sm:mr-0 sm:w-2/4 h-full flex justify-center items-center ">
           {titleIcons[userPage].icon}
           {titleIcons[userPage].navTitle}
         </div>
-        <div id="air" className="w-1/4 hidden sm:block">
+        <div id="air" className="w-1/7 hidden sm:block overflow-hidden md:w-1/4">
 
         </div>
       </div>

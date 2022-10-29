@@ -1,6 +1,6 @@
 import { Modal,Button,Form,Input,Checkbox,Row,Col } from "antd";
 import { useSelector,useDispatch } from "react-redux";
-import '../../../GlobalStyle/antModalStyle.css';
+//import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 
 
 export default function SignupModal(){

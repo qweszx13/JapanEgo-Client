@@ -1,7 +1,7 @@
 import { Modal,Button,Form,Input,Row,Col } from "antd";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import '../../../GlobalStyle/antModalStyle.css';
+//import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 import TestModal from "../TestModal/TestModal";
 
 

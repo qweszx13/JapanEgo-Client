@@ -1,5 +1,3 @@
-import React from "react";
-
 // 출처
 //- Demo at CodePen: https://codepen.io/hideya/pen/Jamabx
 //- GH gist: https://gist.github.com/hideya/16ed168a42f74eb5d2162b4e743940ff
@@ -7,11 +5,9 @@ import React from "react";
 
 export default function flexWrapAni(){
     let targetClassName = 'ant-list-items';//고정?
-    let defaultDuration = '0.3s';
+    let defaultDuration = '0.5s';
     let dummyList = [];
     let conts = document.getElementsByClassName(targetClassName);
-    console.log(conts[0]);// 하나밖에 없음
-    console.log(conts.length);
 
     for (let i = 0, max = conts.length; i < max; i++) {
       let cont = conts[i];
@@ -35,7 +31,6 @@ export default function flexWrapAni(){
         item.style.left = left + 'px';
   
         let dummyDiv = document.createElement('div');
-        console.log(dummyDiv);
         dummyDiv.classList.add(targetClassName + '-dummy');
         let rect = item.getBoundingClientRect();
         dummyDiv.style.width = rect.width + 'px';
@@ -60,6 +55,7 @@ export default function flexWrapAni(){
           item.style.transition = '';
           item.style.left = dummyDiv.offsetLeft + 'px';
         }
+        return null;
       });
   });
 }

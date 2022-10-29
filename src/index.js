@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import GlobalStyle from './GlobalStyle/GlobalStyle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,6 +26,10 @@ function Reducer(currentState,action){
       //신규유저 인가? True,False-SignupPage(TestModal)
       mainPageStatus:0,
       //0->Ego,1->Vocabulary,2->Test,3->Chart 메인페이지상태용
+      kanjiCardSwitch:false,
+      //한자 카드 스위치
+      kanjiCardInfo:{}
+      //한자 카드 번호
 
     };
   }
@@ -34,7 +39,6 @@ function Reducer(currentState,action){
     newState.signupModalSwitch = !newState.signupModalSwitch;
   }
   if(action.type === "LOGIN_SWITCH"){
-    console.log("???")
     newState.loginModalSwitch = !newState.loginModalSwitch;
   } 
   if(action.type === "NEW_USER_STATUS"){
@@ -43,8 +47,15 @@ function Reducer(currentState,action){
   if(action.type === "PAGE_SWITCH"){
     newState.mainPageStatus = action.pageNum;
   }
+  if(action.type === "KANJI_CARD_SWITCH"){
+    if(action.status){
+      newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+      newState.kanjiCardInfo = action.kanjiInfo;
+    }else{
+      newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+    }
+  }
   return newState;
-  //
 } 
 
 const Store = createStore(Reducer);
@@ -55,6 +66,7 @@ const Store = createStore(Reducer);
 root.render(
   //<React.StrictMode>
     <Provider store={Store}>  
+      <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<SignupPage/>} />
