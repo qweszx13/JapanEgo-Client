@@ -36,30 +36,28 @@ export default function CardModal(KanjiData){
         title={cardInfo.grade}
         footer={null}
         >
-        <div className="flex flex-row bg-gray-300 w-full h-96">
-          <div className="flex flex-col">
-            <div id="kanji" className="">
-
+        <div className="flex flex-row bg-gray-300 w-full h-96 ">
+          <div className="flex flex-col justify-between w-1/2 bg-white border-solid border-r-2">
+            <div id="kanji" className="h-1/3 text-6xl flex justify-center items-center sm:text-7xl border-solid border-b-2">
+              <p className="rounded-[2rem] border-solid border-2 border-black bg-gray-300 m-0 p-2">漢字</p>
             </div>
-            <div id="korean">
-
+            <div id="korean" className="h-1/3 border-solid border-b-2">
+            korean
             </div>
-            <div id="grade">
-
-            </div>
-
-          </div>
-          <div className="flex flex-col">
-            <div id="description1">
-
-            </div>
-            <div id="description2">
-
+            <div id="grade" className="h-1/3">
+            N1
             </div>
 
           </div>
-        {cardInfo.kanji}
+          <div className="flex flex-col justify-between w-1/2 bg-white">
+            <div id="description1" className="h-1/2 border-solid border-b-2">
+            음독? 
+            </div>
+            <div id="description2" className="h-1/2">
+            훈독?
+            </div>
 
+          </div>
         </div>
 
         <div>
