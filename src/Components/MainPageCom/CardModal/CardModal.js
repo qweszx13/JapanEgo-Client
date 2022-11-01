@@ -16,7 +16,6 @@ export default function CardModal(KanjiData){
   });
 
   const cardInfo = useSelector((state)=>{
-    console.log(state.kanjiCardInfo);
     return state.kanjiCardInfo
   });
   

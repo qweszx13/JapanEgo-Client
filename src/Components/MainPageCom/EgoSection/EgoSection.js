@@ -1,23 +1,23 @@
-import { Card, List } from 'antd';
 import { useEffect } from 'react';
-import { useDispatch } from "react-redux";
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { ReactComponent as Search } from '../../../Assets/svg/search.svg';
-//import '../../../GlobalStyle/UIStyle/antUlStyle.css';
 import { useRef } from 'react';
 import flexWrapAni from '../../../lib/flexWrapAni';
 import CardModal from '../CardModal/CardModal';
-
+import CardMake from '../CardMake/CardMake';
+import { useDispatch } from 'react-redux';
 
 export default function EgoSection(){
 
   useEffect(()=>{
-    flexWrapAni();
     //한자 추가될때,한자 삭제 될때
+    dataSet();
   },[]);
 
   const inputRef = useRef();
 
+  const listDispatch = useDispatch();
+
+ 
   
   const data = [
     {
@@ -98,18 +98,23 @@ export default function EgoSection(){
       dataNum: 16
     },
   ];
-  const modalDispatch = useDispatch();
 
-  const switchModalDispatch = (data)=>{
-    if(data !== undefined){
-      modalDispatch({type:"KANJI_CARD_SWITCH",status:true,kanjiInfo:data});
-    }
+  const dataSet = ()=>{
+    listDispatch({type:"LIST_INFO",listInfo:data});
   }
+
+  // const modalDispatch = useDispatch();
+
+  // const switchModalDispatch = (data)=>{
+  //   if(data !== undefined){
+  //     modalDispatch({type:"KANJI_CARD_SWITCH",status:true,kanjiInfo:data});
+  //   }
+  // }
   
-  function cardOnClick(e){
-    switchModalDispatch(data[e.currentTarget.id-1]);
+  // function cardOnClick(e){
+  //   switchModalDispatch(data[e.currentTarget.id-1]);
    
-  }
+  // }
   
   
   return(
@@ -131,7 +136,8 @@ export default function EgoSection(){
           <rt className="text-sm dark:text-gray-400 md:text-lg lg:text-2xl">きょうのかんじ</rt>
         </ruby>
       </label>
-      <InfiniteScroll
+      <CardMake></CardMake>
+      {/* <InfiniteScroll
         dataLength={10}
         hasMore={data.length < 50}
         scrollableTarget="scrollableDiv"
@@ -152,7 +158,7 @@ export default function EgoSection(){
             </List.Item>
           )}
         />
-      </InfiniteScroll>
+      </InfiniteScroll> */}
       <CardModal></CardModal>
     </div>
   )
