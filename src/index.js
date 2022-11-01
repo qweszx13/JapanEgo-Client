@@ -28,33 +28,78 @@ function Reducer(currentState,action){
       //0->Ego,1->Vocabulary,2->Test,3->Chart 메인페이지상태용
       kanjiCardSwitch:false,
       //한자 카드 스위치
-      kanjiCardInfo:{}
+      kanjiCardInfo:{},
       //한자 카드 번호
-
+      userListModalSwitch:false,
+      //유저리스트모달스위치
     };
   }
   const newState = {...currentState};
+
+  const CommonParameter = {
+    SIGNUP_SWITCH:"SIGNUP_SWITCH",
+    LOGIN_SWITCH:"LOGIN_SWITCH",
+    NEW_USER_STATUS:"NEW_USER_STATUS",
+    PAGE_SWITCH:"PAGE_SWITCH",
+    KANJI_CARD_SWITCH:"KANJI_CARD_SWITCH",
+    LIST_MODAL_SWITCH:"LIST_MODAL_SWITCH"
+  }
+
+  // for(let i=0; i<Object.keys(CommonParameter).length;i++){
+  //  if(action.type === Object.values(CommonParameter)[i]){
+  //  }
+  // }
+
   //모달용
-  if(action.type === "SIGNUP_SWITCH"){
-    newState.signupModalSwitch = !newState.signupModalSwitch;
+  switch(action.type){
+    case CommonParameter.SIGNUP_SWITCH :
+      newState.signupModalSwitch = !newState.signupModalSwitch; 
+      break
+    case CommonParameter.LOGIN_SWITCH :
+      newState.loginModalSwitch = !newState.loginModalSwitch; 
+      break
+    case CommonParameter.NEW_USER_STATUS :
+      newState.userStatus = !newState.userStatus; 
+      break
+    case CommonParameter.PAGE_SWITCH :
+      newState.mainPageStatus = action.pageNum; 
+      break
+    case CommonParameter.KANJI_CARD_SWITCH :
+      if(action.status){
+        newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+        newState.kanjiCardInfo = action.kanjiInfo;
+      }else{
+        newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+      }
+      break
+    case CommonParameter.LIST_MODAL_SWITCH :
+      newState.userListModalSwitch = !newState.userListModalSwitch;
+      break
+    default:console.log("Error");
   }
-  if(action.type === "LOGIN_SWITCH"){
-    newState.loginModalSwitch = !newState.loginModalSwitch;
-  } 
-  if(action.type === "NEW_USER_STATUS"){
-    newState.userStatus = !newState.userStatus;
-  }
-  if(action.type === "PAGE_SWITCH"){
-    newState.mainPageStatus = action.pageNum;
-  }
-  if(action.type === "KANJI_CARD_SWITCH"){
-    if(action.status){
-      newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
-      newState.kanjiCardInfo = action.kanjiInfo;
-    }else{
-      newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
-    }
-  }
+  // if(action.type === CommonParameter.SIGNUP_SWITCH){
+  //   newState.signupModalSwitch = !newState.signupModalSwitch;
+  // }
+  // if(action.type === "LOGIN_SWITCH"){
+  //   newState.loginModalSwitch = !newState.loginModalSwitch;
+  // } 
+  // if(action.type === "NEW_USER_STATUS"){
+  //   newState.userStatus = !newState.userStatus;
+  // }
+  // if(action.type === "PAGE_SWITCH"){
+  //   newState.mainPageStatus = action.pageNum;
+  // }
+  // if(action.type === "KANJI_CARD_SWITCH"){
+  //   if(action.status){
+  //     newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+  //     newState.kanjiCardInfo = action.kanjiInfo;
+  //   }else{
+  //     newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+  //   }
+  // }
+  // if(action.type === "LIST_MODAL_SWITCH"){
+  //   newState.userListModalSwitch = !newState.userListModalSwitch;
+  // }
   return newState;
 } 
 

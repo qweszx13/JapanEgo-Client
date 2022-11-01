@@ -1,5 +1,9 @@
 import { Modal } from "antd";
+import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
+import { ReactComponent as BookMarkAdd } from '../../../Assets/svg/bookmarkAdd.svg';
+import { ReactComponent as BookMarkArleady } from '../../../Assets/svg/bookmarkAlready.svg';
+import CardBookMarkModal from "../CardBookMarkModal/CardBookMarkModal";
 //import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 
 
@@ -12,6 +16,7 @@ export default function CardModal(KanjiData){
   });
 
   const cardInfo = useSelector((state)=>{
+    console.log(state.kanjiCardInfo);
     return state.kanjiCardInfo
   });
   
@@ -28,6 +33,12 @@ export default function CardModal(KanjiData){
   };
   /*모달 관련 문 끝 */
 
+  const bookmarkModalSwitch = ()=>{
+    modalDispatch({type:"LIST_MODAL_SWITCH"});
+  }
+  const [bookmarkSwitch,setBookmarkSwitch] = useState(false);
+  //북마크
+
   return(
     <div>
       <Modal
@@ -40,9 +51,16 @@ export default function CardModal(KanjiData){
           <div className="flex flex-col justify-between w-full p-2 border-solid border-r-2 rounded-xl">
             <div className="h-1/3 flex flex-row justify-between border-solid border-b-2">
               <div id="kanji" className="h-full text-6xl flex sm:text-7xl">
-                <p className="rounded-xl m-0 p-2 mb-2 bg-white ">漢字</p>
+                <p className="rounded-xl m-0 p-2 mb-2 bg-white ">{cardInfo.kanji}</p>
               </div>
-              
+              <div>
+                {
+                bookmarkSwitch
+                ?<BookMarkArleady className="hover:animate-beat" onClick={()=>{setBookmarkSwitch(!bookmarkSwitch)}}></BookMarkArleady>
+                :<BookMarkAdd className="hover:animate-beat" onClick={()=>{bookmarkModalSwitch()}}></BookMarkAdd>
+                }
+                <CardBookMarkModal></CardBookMarkModal>
+              </div>
             </div>
             
             <div id="korean" className="h-1/3 border-solid border-b-2">
