@@ -1,136 +1,133 @@
-import { useEffect } from 'react';
-import CardModal from '../CardModal/CardModal';
-import CardMake from '../CardMake/CardMake';
-import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
-
+import { Card, List, Popconfirm, Input } from 'antd';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch,useSelector } from "react-redux";
+import { FileAddOutlined } from '@ant-design/icons';
+import { useRef,useState } from 'react';
 
 
 export default function VocabularySection(){
 
-  const { Option } = Select;
+  
 
-  useEffect(()=>{
-    //한자 추가될때,한자 삭제 될때
-    dataSet();
-  },[]);
+  const modalDispatch = useDispatch();
 
-  const data = [
+  const switchListModalDispatch = ()=>{
+    modalDispatch({type:"LIST_MODAL_SWITCH"});
+  }
+  
+  function cardAddOnClick(){
+    switchListModalDispatch();
+  }
+
+  const listData = useSelector((state)=>{
+    return state.userListInfo
+  })
+
+  const userListData = [
     {
-      kanji: 'page11',
-      grade: 'N1',
-      dataNum: 1
+      list: '아 안외워져',
+      total: 150,
+      unRemember: 112
     },
     {
-      kanji: 'page12',
-      grade: 'N2',
-      dataNum: 2
+      list: '넌 뭐야',
+      total: 14,
+      unRemember: 1
     },
     {
-      kanji: 'page13',
-      grade: 'N3',
-      dataNum: 3
+      list: '이단어 극혐',
+      total: 130,
+      unRemember: 12
     },
     {
-      kanji: 'page14',
-      grade: 'N4',
-      dataNum: 4
-    },{
-      kanji: 'page15',
-      grade: 'N1',
-      dataNum: 5
+      list: '火모음집',
+      total: 14,
+      unRemember: 11
     },
     {
-      kanji: 'page16',
-      grade: 'N2',
-      dataNum: 6
+      list: 'JLPT2급준비',
+      total: 200,
+      unRemember: 50
     },
     {
-      kanji: 'page17',
-      grade: 'N3',
-      dataNum: 7
+      list: 'JLPT2급준비2',
+      total: 200,
+      unRemember: 40
     },
     {
-      kanji: 'page18',
-      grade: 'N4',
-      dataNum: 8
-    },{
-      kanji: 'page19',
-      grade: 'N1',
-      dataNum: 9
+      list: 'JLPT2급준비3',
+      total: 200,
+      unRemember: 30
+    },
+    {
+      list: 'JLPT2급준비4',
+      total: 200,
+      unRemember: 30
     }
   ];
-  const data2 = [
-    {
-      kanji: 'dummy21',
-      grade: 'N1',
-      dataNum: 1
-    },
-    {
-      kanji: 'dummy22',
-      grade: 'N2',
-      dataNum: 2
-    },
-    {
-      kanji: 'dummy23',
-      grade: 'N3',
-      dataNum: 3
-    },
-    {
-      kanji: 'dummy24',
-      grade: 'N4',
-      dataNum: 4
-    },{
-      kanji: 'dummy25',
-      grade: 'N1',
-      dataNum: 5
-    },
-    {
-      kanji: 'dummy26',
-      grade: 'N2',
-      dataNum: 6
-    },
-    {
-      kanji: 'dummy27',
-      grade: 'N3',
-      dataNum: 7
-    },
-  ];
+  userListData.push({
+    list:'last',
+    isLast:true
+  });
 
+  const createListInputRef = useRef();
 
-  const listDumy = [
-    {list:"응 나의 메모장"},
-    {list:"잘안외워지네.."},
-    {list:"어렵뜨아"},
-    {list:"N4랄까?"},
-    ]
-    const listDispatch = useDispatch();
-    const dataSet = ()=>{
-      listDispatch({type:"LIST_INFO",listInfo:data});
-    }
-    const dataSet2 = ()=>{
-      listDispatch({type:"LIST_INFO",listInfo:data2});
-    }
+  const [createListInputNum,setCreateListInputNum] = useState("");
 
+ 
   return(
-    
     <div className="h-full w-full overflow-auto animate-smoothy">
-     
-      <div className='flex justify-end pr-9 pb-2'>
-        <label className="relative block w-2/4 ml-auto mr-auto mb-3 mt-3 text-center">   
-          <p className="mb-0 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-gray-400">{listDumy[0].list}</p>
+      <InfiniteScroll
+        dataLength={10}
+        hasMore={userListData.length < 11}
+        scrollableTarget="scrollableDiv"
+      >
+        <label className="relative block w-3/4 ml-auto mr-auto mb-3 mt-3 text-center">
+          <ruby>
+            
+            <p className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-400">私のリスト</p>
+            <rt className="text-sm dark:text-gray-400 md:text-lg lg:text-2  xl">わたしのりすと</rt>
+          </ruby>
         </label>
-        <div className="w-1/4 flex flex-col justify-center">
-          <Select className="w-full bg-gray-400" defaultValue={listDumy[0].list} onChange={(e)=>{e==="응 나의 메모장"?dataSet():dataSet2()}}>
-            {listDumy.map((value,index)=>{
-              return <Option key={value.list+"optionKey"} value={value.list}>{value.list}</Option>
-            })}
-            <Option style={{textAlign:"center",backgroundColor:"#E2DCDE"}} key="plusButton" value={"+"}>{}</Option>
-          </Select>
-        </div>
-      </div>
-     <CardMake></CardMake>
-     <CardModal></CardModal>
+        <List
+          className="bg-none"
+          bordered={true}
+          style={{padding:"8px",justifyContent:"center"}}
+          size='small'
+          dataSource={userListData}
+          renderItem={item =>(
+            <List.Item>
+              {item.isLast !== true
+              ?<Card id={item.list} className="hover:animate-eventhover active:animate-eventclick" style={{backgroundColor:"#c798f9",borderRadius:"10px",width:"150px",boxShadow:"3px 3px gray"
+                }} title={item.list} onClick={(e)=>{}}>
+                  <div className="flex flex-col justify-between">
+                    <div>단어갯수 :  {item.total}</div>
+                    <div>미암기 : {item.unRemember}</div>
+                  </div>
+                </Card>
+              :<Popconfirm 
+              title={<Input showCount maxLength={20} ref={createListInputRef} onChange={(e)=>{setCreateListInputNum(e.target.value);}} value={createListInputNum} />}
+              icon={<FileAddOutlined style={{top:'25%',color: 'blue' }} />}
+              okText="작성"
+              cancelText="취소"
+              onConfirm={()=>{
+                console.log(createListInputRef.current.input.value);
+              }}
+              onOpenChange={()=>{
+                setCreateListInputNum("");
+              }}
+              >
+                <Card id={item.list} className="hover:animate-eventhover active:animate-eventclick" style={{fontSize:"65px",textAlign:"center",backgroundColor:"#c798f9",borderRadius:"10px",width:"150px",boxShadow:"3px 3px gray"
+                }} onClick={()=>{cardAddOnClick()}}>
+                  <p className="m-0">+</p>
+                </Card>
+              </Popconfirm>
+              }
+              
+            </List.Item>
+          )}/>
+      </InfiniteScroll>
     </div>
+    
   )
 }

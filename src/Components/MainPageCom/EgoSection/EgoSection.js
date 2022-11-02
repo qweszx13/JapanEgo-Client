@@ -137,28 +137,6 @@ export default function EgoSection(){
         </ruby>
       </label>
       <CardMake></CardMake>
-      {/* <InfiniteScroll
-        dataLength={10}
-        hasMore={data.length < 50}
-        scrollableTarget="scrollableDiv"
-      >
-        <List
-          className="bg-none"
-          bordered={true}
-          style={{padding:"8px",justifyContent:"center"}}
-          size='small'
-          dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              <Card id={item.dataNum} className="hover:animate-eventhover active:animate-eventclick" style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"110px"}} title={item.kanji} 
-                onClick={(e)=>{cardOnClick(e)}}
-              >
-                {item.grade}
-              </Card>
-            </List.Item>
-          )}
-        />
-      </InfiniteScroll> */}
       <CardModal></CardModal>
     </div>
   )

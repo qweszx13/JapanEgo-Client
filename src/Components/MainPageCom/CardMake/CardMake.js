@@ -1,9 +1,6 @@
 import { Card, List } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch,useSelector } from "react-redux";
-import { useEffect, useState } from 'react';
-import flexWrapAni from '../../../lib/flexWrapAni';
-
 
 
 export default function CardMake(){
@@ -39,7 +36,7 @@ export default function CardMake(){
         dataSource={listData}
         renderItem={item => (
           <List.Item>
-            <Card id={item.dataNum} className="hover:animate-eventhover active:animate-eventclick" style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"110px"}} title={item.kanji} 
+            <Card id={item.dataNum} className="hover:animate-eventhover active:animate-eventclick" style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"110px",boxShadow:"3px 3px gray"}} title={item.kanji} 
               onClick={(e)=>{cardOnClick(e)}}
             >
               {item.grade}

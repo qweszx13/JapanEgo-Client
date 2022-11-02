@@ -32,7 +32,7 @@ export default function SignupPage() {
   
   
   return (
-    <div className="relative overflow-hidden bg-white w-full">
+    <div className="relative overflow-hidden bg-white w-full h-full flex-col justify-center">
       
       <div className="mx-auto max-full">
         <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
