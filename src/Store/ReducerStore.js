@@ -21,6 +21,8 @@ export default function ReducerStore(currentState,action){
       //유저리스트모달스위치
       userListInfo:[],
       //유저한자리스트정보->추천단어,유저개인단어장속 한자 리스트
+      vocaListInfo:{list:"VOCA_MAIN"},
+      //단어장리스트정보-> list: 'JLPT2급준비4',total: 200,unRemember: 30,listNumber:7
     };
   }
   const newState = {...currentState};
@@ -32,7 +34,8 @@ export default function ReducerStore(currentState,action){
     PAGE_SWITCH:"PAGE_SWITCH",
     KANJI_CARD_SWITCH:"KANJI_CARD_SWITCH",
     LIST_MODAL_SWITCH:"LIST_MODAL_SWITCH",
-    LIST_INFO:"LIST_INFO"
+    LIST_INFO:"LIST_INFO",
+    VOCA_LIST_INFO:"VOCA_LIST_INFO",
   }
 
   // for(let i=0; i<Object.keys(CommonParameter).length;i++){
@@ -67,6 +70,9 @@ export default function ReducerStore(currentState,action){
       break
     case CommonParameter.LIST_INFO ://userListInfo(action.listInfo)
       newState.userListInfo = action.listInfo;
+      break
+    case CommonParameter.VOCA_LIST_INFO :
+      newState.vocaListInfo = action.vocaInfo;
       break
     default:console.log("Error");
   }

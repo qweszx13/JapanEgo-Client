@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { ReactComponent as Search } from '../../../Assets/svg/search.svg';
 import { useRef } from 'react';
-import flexWrapAni from '../../../lib/flexWrapAni';
 import CardModal from '../CardModal/CardModal';
 import CardMake from '../CardMake/CardMake';
 import { useDispatch } from 'react-redux';
@@ -19,7 +18,7 @@ export default function EgoSection(){
 
  
   
-  const data = [
+  const data = [//더미 데이터 카드(홈화면에 표시되는 카드)에 표시할 데이터
     {
       kanji: 'kanji 1',
       grade: 'N1',
@@ -100,7 +99,7 @@ export default function EgoSection(){
   ];
 
   const dataSet = ()=>{
-    listDispatch({type:"LIST_INFO",listInfo:data});
+    listDispatch({type:"LIST_INFO",listInfo:data});//데이터 보내서 카드 생성
   }
 
   // const modalDispatch = useDispatch();

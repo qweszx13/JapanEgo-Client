@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
 import CardModal from '../CardModal/CardModal';
 import CardMake from '../CardMake/CardMake';
-import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReactComponent as Back } from '../../../Assets/svg/back.svg';
 
 
 
 export default function VocaSectionCard(){
 
-  const { Option } = Select;
-
   useEffect(()=>{
-    //한자 추가될때,한자 삭제 될때
     dataSet();
+    //한자 추가될때,한자 삭제 될때
   },[]);
 
   const data = [
@@ -97,29 +95,33 @@ export default function VocaSectionCard(){
     },
   ];
 
-
-  const listDumy = [
-    {list:"응 나의 메모장"},
-    {list:"잘안외워지네.."},
-    {list:"어렵뜨아"},
-    {list:"N4랄까?"},
-    ]
     const listDispatch = useDispatch();
+
     const dataSet = ()=>{
       listDispatch({type:"LIST_INFO",listInfo:data});
     }
-    const dataSet2 = ()=>{
-      listDispatch({type:"LIST_INFO",listInfo:data2});
+
+    const backToMain = ()=>{
+      listDispatch({type:"VOCA_LIST_INFO",vocaInfo:{list:"VOCA_MAIN"}})
     }
 
+
+    const listData = useSelector((state)=>{
+      return state.vocaListInfo
+    })
   return(
     
     <div className="h-full w-full overflow-auto animate-smoothy">
-     
-      <div className='flex justify-end pr-9 pb-2'>
-        <label className="relative block w-2/4 ml-auto mr-auto mb-3 mt-3 text-center">   
-          <p className="mb-0 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-gray-400">{listDumy[0].list}</p>
-        </label>
+      
+      <div className='flex flex-row justify-end'>
+        <div className='mt-auto mb-auto'>
+          <Back className='active:animate-backclick' onClick={()=>{
+            backToMain();
+          }}></Back>
+        </div>
+        <div className="relative block w-2/4 ml-auto mr-auto mb-3 mt-3 pr-[40px] text-center">   
+          <p className="mb-0 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-gray-400">{listData.list}</p>
+        </div>
       </div>
      <CardMake></CardMake>
      <CardModal></CardModal>

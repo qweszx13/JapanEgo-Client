@@ -17,7 +17,7 @@ export default function CardMake(){
     switchModalDispatch(listData[e.currentTarget.id-1]);
   }
 
-  const listData = useSelector((state)=>{
+  const listData = useSelector((state)=>{//리스트 정보를 가져와서 카드생성 카드 한자정보,급수정보,아이템순서
     return state.userListInfo
   })
   

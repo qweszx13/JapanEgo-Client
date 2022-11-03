@@ -58,7 +58,7 @@ export default function CardModal(KanjiData){
                 ?<BookMarkArleady className="hover:animate-beat" onClick={()=>{setBookmarkSwitch(!bookmarkSwitch)}}></BookMarkArleady>
                 :<BookMarkAdd className="hover:animate-beat" onClick={()=>{bookmarkModalSwitch()}}></BookMarkAdd>
                 }
-                <CardBookMarkModal></CardBookMarkModal>
+                
               </div>
             </div>
             
@@ -86,6 +86,7 @@ export default function CardModal(KanjiData){
             onClick={handleOk}>일단 확인
           </a>
         </div>
+      <CardBookMarkModal></CardBookMarkModal>
       </Modal>
     </div>
   );

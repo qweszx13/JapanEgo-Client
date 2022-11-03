@@ -21,10 +21,6 @@ export default function CardBookMarkModal(){
   };
   /*모달 관련 문 끝 */
 
-  const listInfo = useSelector((state)=>{
-    return state.userListInfo
-  })
-
   const listDumy = [
     {list:"응 나의 메모장",status:true},
     {list:"잘안외워지네..",status:false},
@@ -41,7 +37,7 @@ export default function CardBookMarkModal(){
       title="나의 단어장 리스트"
       footer={null}
       >
-        <div className="">
+        <div>
           {listDumy.map((value,index)=>{
             return(
               <a href="##"
@@ -53,7 +49,7 @@ export default function CardBookMarkModal(){
               </a>
             )
           })}
-        </div>
+        </div>  
         <a href="##"
           className="block w-full bg-emerald-50 px-5 py-3 text-center font-medium text-black hover:bg-emerald-100 hover:text-blue -400"
           >+

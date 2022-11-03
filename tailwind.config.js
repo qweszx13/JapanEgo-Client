@@ -26,14 +26,19 @@ module.exports = {
         eventclick:{
           '0%': { transform: 'translateY(0px)' },
           '100%': { transform: 'translateY(5px) translateX(-5px);' }
-        }
+        },
+        backclick:{
+          '0%': { transform: 'translateY(0px)' },
+          '100%': { transform: 'translateX(-5px)' }
+        },
       },
       animation:{
         beat:'beat 1s',
         appear:'appear 1s',
         smoothy:'smoothy 1s',
         eventhover:'eventhover 1s infinite',
-        eventclick:'eventclick 0.1s'
+        eventclick:'eventclick 0.1s',
+        backclick:'backclick 0.1s'
       }
     },
   },
