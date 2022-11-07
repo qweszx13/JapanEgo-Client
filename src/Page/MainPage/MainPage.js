@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.min.css';
-import NavBar from '../../Components/MainPageCom/NavBar/NavBar';
 import { useSelector } from 'react-redux';
+import NavBar from '../../Components/MainPageCom/NavBar/NavBar';
 import EgoSection from '../../Components/MainPageCom/EgoSection/EgoSection';//sectionNum=>0
 import VocabularySection from '../../Components/MainPageCom/VocabularySection/VocabularySection';//sectionNum=>1
 import TestSection from '../../Components/MainPageCom/TestSection/TestSection';//sectionNum=>2
@@ -12,7 +12,7 @@ const sectionArray = [<EgoSection/>,<VocabularySection/>,<TestSection/>,<ChartSe
 export default function MainPage(){
 
   const userPage = useSelector((state)=>{
-    return state.mainPageStatus;
+    return state.stateMainPageStatus;
   })
 
   return(

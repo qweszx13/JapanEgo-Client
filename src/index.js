@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import MainPage from './Page/MainPage/MainPage'
 import SignupPage from './Page/SignupPage/SignupPage';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './lib/reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -13,25 +13,21 @@ import ReducerStore from './Store/ReducerStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const Store = createStore(ReducerStore);
+const Store = createStore(ReducerStore);//redux Store 생성
 
 root.render(
   <React.StrictMode>
-    <Provider store={Store}>  
+    <Provider store={Store}>{/*reduxStore 적용*/}
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<SignupPage/>} />
-          <Route path="/Main" exact element={<MainPage/>} />
+          <Route path="/" exact element={<SignupPage/>} />{/*시작 페이지*/}
+          <Route path="/Main" exact element={<MainPage/>} />{/*메인 페이지*/}
         </Routes>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
 

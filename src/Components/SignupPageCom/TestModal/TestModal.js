@@ -12,11 +12,11 @@ export default function TestModal(){
 
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
-    return state.userStatus
+    return state.stateTestModalFlag
   })
   
   const switchModalDispatch = ()=>{
-    modalDispatch({type:"NEW_USER_STATUS"});
+    modalDispatch({type:"TEST_MODAL_FLAG"});
   }
 
   const handleOk = () => {
@@ -40,7 +40,7 @@ export default function TestModal(){
   };
   /*모달 관련 문 끝 */
 
-  const getInData = (listNum)=>{
+  const getInData = (listNum)=>{//시험 부분 
     const kanjiNum = []
     for(let i=0;i<5;i++){
       kanjiNum.push(

@@ -7,12 +7,12 @@ export default function NavBar(){
   const pageDispatch = useDispatch();
 
   const switchPageDispatch = (page)=>{
-    pageDispatch({type:"PAGE_SWITCH",pageNum:page})
+    pageDispatch({type:"MAIN_PAGE_STATUS",pageNum:page})
     //store page 설정 부분
   }
   
   const userPage = useSelector((state)=>{
-    return state.mainPageStatus;
+    return state.stateMainPageStatus;
   })
   //navSelectPage use Redux End
 
@@ -67,8 +67,7 @@ export default function NavBar(){
           {titleIcons[userPage].icon}
           {titleIcons[userPage].navTitle}
         </div>
-        <div id="air" className="w-1/7 hidden sm:block overflow-hidden md:w-1/4">
-
+        <div id="air" className="w-1/7 hidden sm:block overflow-hidden md:w-1/4">{/*공백 공간*/}
         </div>
       </div>
     </div>

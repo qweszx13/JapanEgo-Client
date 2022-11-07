@@ -1,19 +1,17 @@
 import { Modal } from "antd";
-import { useSelector,useDispatch } from "react-redux";
 import { CheckOutlined } from '@ant-design/icons';
-
-
+import { useSelector,useDispatch } from "react-redux";
 
 export default function CardBookMarkModal(){
   const modalDispatch = useDispatch();
   
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
-    return state.userListModalSwitch
+    return state.stateListModalFlag
   });
   
   const switchModalDispatch = ()=>{
-    modalDispatch({type:"LIST_MODAL_SWITCH"});
+    modalDispatch({type:"LIST_MODAL_FLAG"});
   }
   
   const handleCancel = () => {
@@ -38,7 +36,7 @@ export default function CardBookMarkModal(){
       footer={null}
       >
         <div>
-          {listDumy.map((value,index)=>{
+          {listDumy.map((value,_)=>{
             return(
               <a href="##"
                 key={value.list+"listKey"}

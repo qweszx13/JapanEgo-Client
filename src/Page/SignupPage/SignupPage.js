@@ -1,15 +1,15 @@
-import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import 'antd/dist/antd.min.css';
 import './SignupPage.less';
+import 'antd/dist/antd.min.css';
+import { Fragment } from 'react';
 import mainLogo from '../../Assets/images/Logo.png';
 import backImg from '../../Assets/images/signupBack.jpg';
+import { Popover, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import SignupModal from '../../Components/SignupPageCom/SignupModal/SignupModal';
 import LoginModal from '../../Components/SignupPageCom/LoginModal/LoginModal';
 import { useDispatch } from 'react-redux';
 
-const navigation = [
+const navigation = [//삭제여부 검토
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
   { name: 'Marketplace', href: '#' },
@@ -17,23 +17,19 @@ const navigation = [
 ]
 
 export default function SignupPage() {
-  
 
-  const modalDispatch = useDispatch(); 
+  const dispatch = useDispatch(); //디스패쳐 생성(action할당)
 
   const switchSignupModalDispatch = ()=>{
-    modalDispatch({type:"SIGNUP_SWITCH"})
+    dispatch({type:"SIGNUP_MODAL_FLAG"});//redux->signupModal
   }
   
   const switchLoginModalDispatch = ()=>{
-    console.log("??")
-    modalDispatch({type:"LOGIN_SWITCH"})
+    dispatch({type:"LOGIN_MODAL_FLAG"});//redux=>LoginModal
   }
-  
   
   return (
     <div className="relative overflow-hidden bg-white w-full h-full flex-col justify-center">
-      
       <div className="mx-auto max-full">
         <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
           <svg
@@ -45,7 +41,6 @@ export default function SignupPage() {
           >
             <polygon points="50,0 100,0 30,200 0,100" />
           </svg>
-
           <Popover>
             <div className="relative px-4 pt-6 pl-0 sm:px-6 lg:px-8">
               <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
@@ -85,10 +80,7 @@ export default function SignupPage() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Popover.Panel
-                focus
-                className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden"
-              >
+              <Popover.Panel focus className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden">
                 <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
                   <div className="flex items-center justify-between px-5 pt-4">
                     <div>
@@ -125,8 +117,8 @@ export default function SignupPage() {
           <main className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="block xl:inline">Global In </span>{' '}
-                <span className="block text-[#222a6e] xl:inline">Project 日本　行語</span>
+                <span className="block xl:inline">Global In</span>{' '}
+                <span className="block text-[#222a6e] xl:inline">Project 日本 行語</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
                 나만의 한자 단어장 
@@ -137,6 +129,7 @@ export default function SignupPage() {
                     href="##"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-stone-600 px-8 py-3 text-base font-medium text-white hover:bg-stone-700 md:py-4 md:px-10 md:text-lg hover:text-stone-800"
                     onClick={()=>{
+                      //로그인 모달 활성화 dispatch
                       switchLoginModalDispatch();
                     }}
                   >
@@ -148,6 +141,7 @@ export default function SignupPage() {
                   <a href="##"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-stone-200 px-8 py-3 text-base font-medium text-stone-700 hover:bg-stone-300 md:py-4 md:px-10 md:text-lg hover:text-gray-100"
                     onClick={()=>{
+                      //회원가입 모달 활성화 dispatch
                       switchSignupModalDispatch();
                     }}
                   >

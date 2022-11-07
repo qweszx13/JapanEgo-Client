@@ -7,20 +7,20 @@ import CardBookMarkModal from "../CardBookMarkModal/CardBookMarkModal";
 //import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 
 
-export default function CardModal(KanjiData){
-  const modalDispatch = useDispatch();
+export default function CardModal(){
+  const dispatch = useDispatch();
   
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
-    return state.kanjiCardSwitch
+    return state.stateKanjiModalFlag
   });
 
   const cardInfo = useSelector((state)=>{
-    return state.kanjiCardInfo
+    return state.stateKanjiCardInfo
   });
   
   const switchModalDispatch = ()=>{
-    modalDispatch({type:"KANJI_CARD_SWITCH"});
+    dispatch({type:"KANJI_MODAL_FLAG"});
   }
 
   const handleOk = () => {
@@ -33,8 +33,9 @@ export default function CardModal(KanjiData){
   /*모달 관련 문 끝 */
 
   const bookmarkModalSwitch = ()=>{
-    modalDispatch({type:"LIST_MODAL_SWITCH"});
+    dispatch({type:"LIST_MODAL_FLAG"});
   }
+
   const [bookmarkSwitch,setBookmarkSwitch] = useState(false);
   //북마크
 
@@ -58,25 +59,15 @@ export default function CardModal(KanjiData){
                 ?<BookMarkArleady className="hover:animate-beat" onClick={()=>{setBookmarkSwitch(!bookmarkSwitch)}}></BookMarkArleady>
                 :<BookMarkAdd className="hover:animate-beat" onClick={()=>{bookmarkModalSwitch()}}></BookMarkAdd>
                 }
-                
               </div>
             </div>
             
-            <div id="korean" className="h-1/3 border-solid border-b-2">
-            korean
-            </div>
-            <div id="grade" className="h-1/3">
-            N1
-            </div>
-            <div id="description1" className="h-1/2 border-solid border-b-2">
-            음독? 
-            </div>
-            <div id="description2" className="h-1/2">
-            훈독?
-            </div>
+            <div id="korean" className="h-1/3 border-solid border-b-2">korean</div>
+            <div id="grade" className="h-1/3">N1</div>
+            <div id="description1" className="h-1/2 border-solid border-b-2">음독? </div>
+            <div id="description2" className="h-1/2">훈독?</div>
 
           </div>
-         
         </div>
 
         <div>

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import CardModal from '../CardModal/CardModal';
-import CardMake from '../CardMake/CardMake';
+import CardModal from '../KanjiCardModal/KanjiCardModal';
+import CardMake from '../CardMaker/CardMaker';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Back } from '../../../Assets/svg/back.svg';
 
@@ -58,61 +59,59 @@ export default function VocaSectionCard(){
       dataNum: 9
     }
   ];
-  const data2 = [
-    {
-      kanji: 'dummy21',
-      grade: 'N1',
-      dataNum: 1
-    },
-    {
-      kanji: 'dummy22',
-      grade: 'N2',
-      dataNum: 2
-    },
-    {
-      kanji: 'dummy23',
-      grade: 'N3',
-      dataNum: 3
-    },
-    {
-      kanji: 'dummy24',
-      grade: 'N4',
-      dataNum: 4
-    },{
-      kanji: 'dummy25',
-      grade: 'N1',
-      dataNum: 5
-    },
-    {
-      kanji: 'dummy26',
-      grade: 'N2',
-      dataNum: 6
-    },
-    {
-      kanji: 'dummy27',
-      grade: 'N3',
-      dataNum: 7
-    },
-  ];
+  // const data2 = [
+  //   {
+  //     kanji: 'dummy21',
+  //     grade: 'N1',
+  //     dataNum: 1
+  //   },
+  //   {
+  //     kanji: 'dummy22',
+  //     grade: 'N2',
+  //     dataNum: 2
+  //   },
+  //   {
+  //     kanji: 'dummy23',
+  //     grade: 'N3',
+  //     dataNum: 3
+  //   },
+  //   {
+  //     kanji: 'dummy24',
+  //     grade: 'N4',
+  //     dataNum: 4
+  //   },{
+  //     kanji: 'dummy25',
+  //     grade: 'N1',
+  //     dataNum: 5
+  //   },
+  //   {
+  //     kanji: 'dummy26',
+  //     grade: 'N2',
+  //     dataNum: 6
+  //   },
+  //   {
+  //     kanji: 'dummy27',
+  //     grade: 'N3',
+  //     dataNum: 7
+  //   },
+  // ];
 
     const listDispatch = useDispatch();
 
-    const dataSet = ()=>{
-      listDispatch({type:"LIST_INFO",listInfo:data});
+    const dataSet = ()=>{//컴포넌트 생성시 리스트 초기화
+      listDispatch({type:"KANJI_LIST_INFO",listInfo:data});
     }
 
     const backToMain = ()=>{
-      listDispatch({type:"VOCA_LIST_INFO",vocaInfo:{list:"VOCA_MAIN"}})
+      listDispatch({type:"VOCA_LIST_INFO",vocaInfo:{list:"VOCA_MAIN"}})//메인을 가르켜라 (이동해라)
     }
 
-
     const listData = useSelector((state)=>{
-      return state.vocaListInfo
+      return state.stateVocaListInfo
     })
+
   return(
-    
     <div className="h-full w-full overflow-auto animate-smoothy">
-      
       <div className='flex flex-row justify-end'>
         <div className='mt-auto mb-auto'>
           <Back className='active:animate-backclick' onClick={()=>{

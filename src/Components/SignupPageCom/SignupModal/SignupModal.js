@@ -10,11 +10,11 @@ export default function SignupModal(){
   
   /*Redux 스위치 호출문*/
   const modalSwitch = useSelector((state)=>{
-    return state.signupModalSwitch
+    return state.stateSignupModalFlag
   })
   
   const switchModalDispatch = ()=>{
-    modalDispatch({type:"SIGNUP_SWITCH"})
+    modalDispatch({type:"SIGNUP_MODAL_FLAG"})
   }
 
   const handleOk = () => {

@@ -8,8 +8,8 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: { 
-              '@primary-color': '#222a6e' 
-          },//global ant style 지정
+              '@primary-color': '#222a6e' //global ant style 지정
+          },
             javascriptEnabled: true,
           },
         },  

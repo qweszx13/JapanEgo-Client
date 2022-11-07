@@ -6,28 +6,28 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        beat: {
+        beat: {//박동 애니메이션
           '0%': { transform: 'scale(1)' },
           '70%': { transform: 'scale(1.2)' },
         },
-        appear:{
+        appear:{//사라짐 애니메이션
           '0%': { transform: 'scale(0)'},
           '70%': { transform: 'scale(1)'}
         },
-        smoothy:{
+        smoothy:{//자연스럽게 생성 애니메이션
           '0%': { opacity: 0 },
           '70%': { opacity: 1 }
         },
-        eventhover:{
+        eventhover:{//호버시 연하고 진하게 애니메이션
           '0%': { opacity: 1 },
           '50%': { opacity: 0.7 },
           '100%': { opacity: 1 }
         },
-        eventclick:{
+        eventclick:{//클릭시 왼쪽아래 이동 애니메이션
           '0%': { transform: 'translateY(0px)' },
           '100%': { transform: 'translateY(5px) translateX(-5px);' }
         },
-        backclick:{
+        backclick:{//클릭시 왼쪾 이동 애니메이션
           '0%': { transform: 'translateY(0px)' },
           '100%': { transform: 'translateX(-5px)' }
         },

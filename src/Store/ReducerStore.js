@@ -5,36 +5,36 @@ export default function ReducerStore(currentState,action){
   
   if(currentState === undefined){
     return{
-      signupModalSwitch:false,
+      stateSignupModalFlag:false,
       //회원가입모달
-      loginModalSwitch:false,
+      stateLoginModalFlag:false,
       //로그인모달-SingupPage()
-      userStatus:false,
+      stateTestModalFlag:false,
       //신규유저 인가? True,False-SignupPage(TestModal)
-      mainPageStatus:0,
+      stateMainPageStatus:0,
       //0->Ego,1->Vocabulary,2->Test,3->Chart 메인페이지상태용
-      kanjiCardSwitch:false,
-      //한자 카드 스위치
-      kanjiCardInfo:{},
+      stateKanjiModalFlag:false,
+      //한자 카드 모달
+      stateKanjiCardInfo:{},
       //한자 카드 번호
-      userListModalSwitch:false,
+      stateListModalFlag:false,
       //유저리스트모달스위치
-      userListInfo:[],
+      stateKanjiListInfo:[],
       //유저한자리스트정보->추천단어,유저개인단어장속 한자 리스트
-      vocaListInfo:{list:"VOCA_MAIN"},
+      stateVocaListInfo:{list:"VOCA_MAIN"},
       //단어장리스트정보-> list: 'JLPT2급준비4',total: 200,unRemember: 30,listNumber:7
     };
   }
   const newState = {...currentState};
 
   const CommonParameter = {
-    SIGNUP_SWITCH:"SIGNUP_SWITCH",
-    LOGIN_SWITCH:"LOGIN_SWITCH",
-    NEW_USER_STATUS:"NEW_USER_STATUS",
-    PAGE_SWITCH:"PAGE_SWITCH",
-    KANJI_CARD_SWITCH:"KANJI_CARD_SWITCH",
-    LIST_MODAL_SWITCH:"LIST_MODAL_SWITCH",
-    LIST_INFO:"LIST_INFO",
+    SIGNUP_MODAL_FLAG:"SIGNUP_MODAL_FLAG",
+    LOGIN_MODAL_FLAG:"LOGIN_MODAL_FLAG",
+    TEST_MODAL_FLAG:"TEST_MODAL_FLAG",
+    MAIN_PAGE_STATUS:"MAIN_PAGE_STATUS",
+    KANJI_MODAL_FLAG:"KANJI_MODAL_FLAG",
+    LIST_MODAL_FLAG:"LIST_MODAL_FLAG",
+    KANJI_LIST_INFO:"KANJI_LIST_INFO",
     VOCA_LIST_INFO:"VOCA_LIST_INFO",
   }
 
@@ -45,34 +45,34 @@ export default function ReducerStore(currentState,action){
 
   //모달용
   switch(action.type){
-    case CommonParameter.SIGNUP_SWITCH ://signupModalSwitch
-      newState.signupModalSwitch = !newState.signupModalSwitch; 
+    case CommonParameter.SIGNUP_MODAL_FLAG ://stateSignupModalFlag->[SignupPage,SignupModal,LoginModal]
+      newState.stateSignupModalFlag = !newState.stateSignupModalFlag; 
       break
-    case CommonParameter.LOGIN_SWITCH ://loginModalSwitch
-      newState.loginModalSwitch = !newState.loginModalSwitch; 
+    case CommonParameter.LOGIN_MODAL_FLAG ://stateLoginModalFlag->[SignupPage,LoginModal]
+      newState.stateLoginModalFlag = !newState.stateLoginModalFlag; 
       break
-    case CommonParameter.NEW_USER_STATUS ://userStatus
-      newState.userStatus = !newState.userStatus; 
+    case CommonParameter.TEST_MODAL_FLAG ://stateTestModalFlag->[LoginModal,TestModal]
+      newState.stateTestModalFlag = !newState.stateTestModalFlag; 
       break
-    case CommonParameter.PAGE_SWITCH ://mainPageStatus
-      newState.mainPageStatus = action.pageNum; 
+    case CommonParameter.MAIN_PAGE_STATUS ://stateMainPageStatus(pageNum)->[MainPage,NavBar]
+      newState.stateMainPageStatus = action.pageNum; 
       break
-    case CommonParameter.KANJI_CARD_SWITCH ://kanjiCardSwitch()
+    case CommonParameter.KANJI_MODAL_FLAG ://stateKanjiModalFlag,stateKanjiCardInfo(action.kanjiCardInfo)->[KanjiCardModal,CardMaker]
       if(action.status){
-        newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
-        newState.kanjiCardInfo = action.kanjiInfo;
+        newState.stateKanjiModalFlag = !newState.stateKanjiModalFlag;
+        newState.stateKanjiCardInfo = action.kanjiCardInfo;
       }else{
-        newState.kanjiCardSwitch = !newState.kanjiCardSwitch;
+        newState.stateKanjiModalFlag = !newState.stateKanjiModalFlag;
       }
       break
-    case CommonParameter.LIST_MODAL_SWITCH ://userListModalSwitch
-      newState.userListModalSwitch = !newState.userListModalSwitch;
+    case CommonParameter.LIST_MODAL_FLAG ://stateListModalFlag->[KanjiCardModal,CardBookMarkModal]
+      newState.stateListModalFlag = !newState.stateListModalFlag;
       break
-    case CommonParameter.LIST_INFO ://userListInfo(action.listInfo)
-      newState.userListInfo = action.listInfo;
+    case CommonParameter.KANJI_LIST_INFO ://stateKanjiListInfo(action.listInfo)->[VocaSectionCard,EgoSection,CardMaker,]
+      newState.stateKanjiListInfo = action.listInfo;
       break
-    case CommonParameter.VOCA_LIST_INFO :
-      newState.vocaListInfo = action.vocaInfo;
+    case CommonParameter.VOCA_LIST_INFO ://stateVocaListInfo(action.VocaInfo)->[VocabularyNavCard,VocabularySection,VocaSectionCard]
+      newState.stateVocaListInfo = action.vocaInfo;
       break
     default:console.log("Error");
   }
