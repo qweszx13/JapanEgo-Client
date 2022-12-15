@@ -1,4 +1,6 @@
-# 日本に行語_Client の方ですまだサーバ作りが進んでいるので完成ではないです
+# 日本に行語_Client 
+
+### の方ですまだサーバ作りが進んでいるので完成ではないです
 
 ### HTML CSS REACT REDUX TailwindCss AntDesign を使い開発中です
 
@@ -22,4 +24,3 @@
 ## MainPage to MyList go to EachList
 <img width="1175" alt="스크린샷 2022-12-15 오후 3 13 39" src="https://user-images.githubusercontent.com/83339178/207787207-ba3432e3-9267-4893-ace2-4c2562a44ec2.png">
 
-In the project directory, you can run:
