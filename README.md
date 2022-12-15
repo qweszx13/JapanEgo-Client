@@ -1,6 +1,10 @@
-# 日本に行語
+# 日本に行語_Client の方ですまだサーバ作りが進んでいるので完成ではないです
 
-## SignupPage
+### HTML CSS REACT REDUX TailwindCss AntDesign を使い開発中です
+
+## View 紹介写真
+
+## SignupPage 
 <img width="1204" alt="스크린샷 2022-12-15 오후 3 12 19" src="https://user-images.githubusercontent.com/83339178/207786472-b5d5ba9c-1922-4e68-8001-c447d4c81d37.png">
 
 ## LoginModal
@@ -15,5 +19,7 @@
 ## MainPage to MyList
 <img width="1177" alt="스크린샷 2022-12-15 오후 3 13 26" src="https://user-images.githubusercontent.com/83339178/207786759-fcbd1dee-5f31-4b25-874e-9b06c453e0c4.png">
 
-##
+## MainPage to MyList go to EachList
+<img width="1175" alt="스크린샷 2022-12-15 오후 3 13 39" src="https://user-images.githubusercontent.com/83339178/207787207-ba3432e3-9267-4893-ace2-4c2562a44ec2.png">
+
 In the project directory, you can run:
