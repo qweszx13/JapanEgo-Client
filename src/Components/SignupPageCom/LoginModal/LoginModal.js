@@ -100,12 +100,6 @@ export default function LoginModal(){
                 </Col>  
               </Row>
             </Form.Item>
-                
-            {/*()=>{
-              emailCheckInput === true
-              ?setUserVerificationCheck(true)
-              :setUserVerificationCheck(false)
-            }*/}
 
             <Form.Item label="이메일 인증" style={ {marginBottom:"0px"} } hidden="true" /*hidden={userVerification}*/>
               <Row gutter={8}>

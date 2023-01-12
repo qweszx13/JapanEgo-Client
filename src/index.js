@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const Store = createStore(ReducerStore);//redux Store 생성
 
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={Store}>{/*reduxStore 적용*/}
       <GlobalStyle />
       <BrowserRouter>
@@ -26,7 +26,7 @@ root.render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 reportWebVitals();
 

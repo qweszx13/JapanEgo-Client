@@ -75,7 +75,7 @@ export default function VocabularyNavCard(){
     <div className='h-full w-full overflow-auto animate-smoothy'>
       <InfiniteScroll
         dataLength={10}
-        hasMore={vocaListData.length < 11}
+        hasMore={vocaListData.length < 50}
         scrollableTarget="scrollableDiv"
       >
         <label className="relative block w-3/4 ml-auto mr-auto mb-3 mt-3 text-center">

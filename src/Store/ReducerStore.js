@@ -69,6 +69,7 @@ export default function ReducerStore(currentState,action){
       newState.stateListModalFlag = !newState.stateListModalFlag;
       break
     case CommonParameter.KANJI_LIST_INFO ://stateKanjiListInfo(action.listInfo)->[VocaSectionCard,EgoSection,CardMaker,]
+      console.log(action.listInfo);
       newState.stateKanjiListInfo = action.listInfo;
       break
     case CommonParameter.VOCA_LIST_INFO ://stateVocaListInfo(action.VocaInfo)->[VocabularyNavCard,VocabularySection,VocaSectionCard]
