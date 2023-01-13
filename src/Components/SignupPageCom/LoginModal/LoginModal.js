@@ -3,6 +3,8 @@ import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 //import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 import TestModal from "../TestModal/TestModal";
+import { login } from "../../../Apis/auth/auth";
+import { useRef } from "react";
 
 
 export default function LoginModal(){
@@ -27,9 +29,15 @@ export default function LoginModal(){
   const handleOk = () => {//폼 성공여부
     form.submit();
   };
+
+  const userId = useRef();
+  const userPw = useRef();
   
   async function handleSuccess(){//폼 전송 성공
+    let userInfo = {email:userId.current.input.value,password:userPw.current.input.value}
     try{
+      console.log(await login(userInfo));
+      navigate('/Main');
       alert("값 들어옴 ㅇㅇ");
       form.resetFields();
       //await post 요청 dispatch 유저 정보 
@@ -41,11 +49,15 @@ export default function LoginModal(){
         switchLoginModalDispatch();
         navigate("/Main");
       }
-    }catch(e){
-      console.log(e);
-    }
-  }
-
+    }catch ({
+      response: {
+        data: { result },
+      },
+      }) {
+        alert(result);
+      }
+  };
+  
   const handleFailed = ()=>{//폼 전송 실패
     alert("값입력해주셈");
   }
@@ -96,36 +108,11 @@ export default function LoginModal(){
             >
               <Row gutter={8}>
                 <Col span={24}>
-                  <Input /*ref={email}*/ name="user_email" />
+                  <Input ref={userId} name="user_email" />
                 </Col>  
               </Row>
             </Form.Item>
 
-            <Form.Item label="이메일 인증" style={ {marginBottom:"0px"} } hidden="true" /*hidden={userVerification}*/>
-              <Row gutter={8}>
-                <Col span={16}>
-                  <Form.Item
-                    name="verification"
-                    rules={[
-                      {
-                        len:6,
-                        message:"인증번호는 6자 입니다!"
-                      },
-                      {
-                      //required:true,
-                      message:"인증번호를 입력해주세요!"
-                      },
-                    ]}
-                  >
-                    <Input /*ref={userVerification}*/ id="user_verification"/>
-                  </Form.Item>
-                </Col>
-                <Col span={8}>
-                  <Button /*onClick={()=>{onVerificationCheck()}}*/>인증번호 확인</Button>
-                </Col>
-              </Row>
-            </Form.Item>
-          
             <Form.Item
               name="password"
               label="비밀번호"
@@ -135,7 +122,7 @@ export default function LoginModal(){
                 }]}
               hasFeedback
             >
-              <Input.Password />
+              <Input.Password ref={userPw} />
             </Form.Item>
           </Form>
           <div className="text-center">아직 가입하지않으셨나요? 
