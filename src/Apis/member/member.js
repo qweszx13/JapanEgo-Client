@@ -8,7 +8,7 @@ import http from "../instance/instance";
  * @property {string} newPassword
  */
 
-export const passowrdRest = (passowrdRestInfo) => http.post("/auth/passowrd_reset",passowrdRestInfo);
+export const passowordRest = (passowrdRestInfo) => http.post("/auth/passowrd_reset",passowrdRestInfo);
 
 export const profile = (email) => http.get("/member/profile?email="+email);
 
