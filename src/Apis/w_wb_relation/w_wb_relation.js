@@ -1,12 +1,12 @@
 import http from "../instance/instance";
 
 /**
- * word,member 정보
- * @typedef {Object} wtomInfo
+ * word,wordBank 정보
+ * @typedef {Object} wtowbInfo
  * @property {number} wordNo 
- * @property {number} memberNo
+ * @property {number} wordBankNo
  */
 
-export const addWord = (wtomInfo) => http.put("/relation/word/"+wtomInfo.wordNo+"/member/"+wtomInfo.memberNo);
+export const addWord = (wtowbInfo) => http.put("/relation/word/"+wtowbInfo.wordNo+"/bank/"+wtowbInfo.wordBankNo);
 
-export const deleteWord = (wtomInfo) => http.delete("/relation/word/"+wtomInfo.wordNo+"/member/"+wtomInfo.memberNo);
+export const deleteWord = (wtowbInfo) => http.delete("/relation/word/"+wtowbInfo.wordNo+"/bank/"+wtowbInfo.wordBankNo);
