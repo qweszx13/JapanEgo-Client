@@ -6,6 +6,8 @@
 
 ## View 紹介写真
 
+##　Craco を使って　config.jsを修正されているので Yarnを設置後実行してください
+
 ## SignupPage 
 <img width="1204" alt="스크린샷 2022-12-15 오후 3 12 19" src="https://user-images.githubusercontent.com/83339178/207786472-b5d5ba9c-1922-4e68-8001-c447d4c81d37.png">
 
