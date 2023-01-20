@@ -23,6 +23,8 @@ export default function ReducerStore(currentState,action){
       //유저한자리스트정보->추천단어,유저개인단어장속 한자 리스트
       stateVocaListInfo:{list:"VOCA_MAIN"},
       //단어장리스트정보-> list: 'JLPT2급준비4',total: 200,unRemember: 30,listNumber:7
+      stateEmailVerificationModalFlag:false,
+      //이메일 인증 모달
     };
   }
   const newState = {...currentState};
@@ -36,6 +38,7 @@ export default function ReducerStore(currentState,action){
     LIST_MODAL_FLAG:"LIST_MODAL_FLAG",
     KANJI_LIST_INFO:"KANJI_LIST_INFO",
     VOCA_LIST_INFO:"VOCA_LIST_INFO",
+    EMAIL_MODAL_FLAG:"EMAIL_MODAL_FLAG",
   }
 
   // for(let i=0; i<Object.keys(CommonParameter).length;i++){
@@ -75,6 +78,9 @@ export default function ReducerStore(currentState,action){
     case CommonParameter.VOCA_LIST_INFO ://stateVocaListInfo(action.VocaInfo)->[VocabularyNavCard,VocabularySection,VocaSectionCard]
       newState.stateVocaListInfo = action.vocaInfo;
       break
+    case CommonParameter.EMAIL_MODAL_FLAG ://statteEmailVerificationModalFlag -> [EmailVerificationModal,]
+      newState.stateEmailVerificationModalFlag = !newState.stateEmailVerificationModalFlag;
+      break;
     default:console.log("Error");
   }
   return newState;

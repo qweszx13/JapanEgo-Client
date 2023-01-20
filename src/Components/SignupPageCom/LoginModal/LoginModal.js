@@ -1,11 +1,21 @@
-import { Modal,Button,Form,Input,Row,Col } from "antd";
+import { Modal,Form,Input,Row,Col,notification } from "antd";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 //import "../../../GlobalStyle/ModalStyle/antModalStyle.css"
 import TestModal from "../TestModal/TestModal";
+import EmailVerificationModal from "../EmailVerificationModal/EmailVerificationModal";
 import { login } from "../../../Apis/auth/auth";
+import { SmileOutlined } from '@ant-design/icons';
 import { useRef } from "react";
 
+const openNotification = () => {
+  notification.open({
+    message: '회원가입을 환영합니다~!',
+    description:
+      '저희 JapanEgo를 이용하기위해서는 Email 인증이 필요합니다~! 이메일 인증을 진행해주세요~!',
+    icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+  });
+};
 
 export default function LoginModal(){
   const dispatch = useDispatch();
@@ -25,6 +35,11 @@ export default function LoginModal(){
     switchLoginModalDispatch();
     dispatch({type:"SIGNUP_MODAL_FLAG"});
   }
+
+  const moveEmailModalDispatch = ()=>{
+    switchLoginModalDispatch();
+    dispatch({type:"EMAIL_MODAL_FLAG"});
+  }
   
   const handleOk = () => {//폼 성공여부
     form.submit();
@@ -36,18 +51,24 @@ export default function LoginModal(){
   async function handleSuccess(){//폼 전송 성공
     let userInfo = {email:userId.current.input.value,password:userPw.current.input.value}
     try{
-      console.log(await login(userInfo));
-      navigate('/Main');
-      alert("값 들어옴 ㅇㅇ");
+      //console.log(await login(userInfo));
+      //navigate('/Main');
+      //alert("값 들어옴 ㅇㅇ");
       form.resetFields();
       //await post 요청 dispatch 유저 정보 
       let dummyUserStatus = true;//더미 데이터 true= 신규 false= 구회원
-      if(dummyUserStatus === true){//신규회원
-        dispatch({type:"TEST_MODAL_FLAG"});
-        switchLoginModalDispatch();
-      }else{//구회원
-        switchLoginModalDispatch();
-        navigate("/Main");
+      let dummyEmailStatus = false
+      if(dummyEmailStatus === false){//이메일 인증 안한 회원
+        moveEmailModalDispatch();
+        openNotification();
+      }else{
+        if(dummyUserStatus === true){//신규회원
+          dispatch({type:"TEST_MODAL_FLAG"});
+          switchLoginModalDispatch();
+        }else{//구회원
+          switchLoginModalDispatch();
+          navigate("/Main");
+        }
       }
     }catch ({
       response: {
@@ -140,6 +161,7 @@ export default function LoginModal(){
               }}>로그인</a>
         </div>
       </Modal>
+      <EmailVerificationModal></EmailVerificationModal>
       <TestModal></TestModal>
     </div>
   );

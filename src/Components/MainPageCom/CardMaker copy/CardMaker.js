@@ -3,14 +3,79 @@ import { useDispatch,useSelector } from "react-redux";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
-import { wordList } from '../../../Apis/word/word';
-import { useRef } from 'react';
-import { SmileOutlined }  from '@ant-design/icons';
 
-let page = 1;
-let initData = [];
+const data = [//더미 데이터 카드(홈화면에 표시되는 카드)에 표시할 데이터 더미
+  {
+    kanji: 'kanji 17',
+    grade: 'N1',
+    dataNum: 17
+  },
+  {
+    kanji: 'kanji 18',
+    grade: 'N2',
+    dataNum: 18
+  },
+  {
+    kanji: 'kanji 19',
+    grade: 'N3',
+    dataNum: 19
+  },
+  {
+    kanji: 'kanji 20',
+    grade: 'N4',
+    dataNum: 20
+  },{
+    kanji: 'kanji 21',
+    grade: 'N1',
+    dataNum: 21
+  },
+  {
+    kanji: 'kanji 22',
+    grade: 'N2',
+    dataNum: 22
+  },
+  {
+    kanji: 'kanji 23',
+    grade: 'N3',
+    dataNum: 23
+  },
+  {
+    kanji: 'kanji 24',
+    grade: 'N4',
+    dataNum: 24
+  },{
+    kanji: 'kanji 25',
+    grade: 'N1',
+    dataNum: 25
+  },
+  {
+    kanji: 'kanji 26',
+    grade: 'N2',
+    dataNum: 26
+  },
+  {
+    kanji: 'kanji 27',
+    grade: 'N3',
+    dataNum: 27
+  },
+  {
+    kanji: 'kanji 28',
+    grade: 'N4',
+    dataNum: 28
+  },{
+    kanji: 'kanji 29',
+    grade: 'N1',
+    dataNum: 29
+  },
+  {
+    kanji: 'kanji 30',
+    grade: 'N2',
+    dataNum: 30
+  }
+];//더미끝 
 
 export default function CardMake(){
+  
   const dispatch = useDispatch();
 
   const switchModalDispatch = (data)=>{
@@ -23,17 +88,22 @@ export default function CardMake(){
     switchModalDispatch(listData[e.currentTarget.id-1]);
   }
 
-  const listData = useSelector((state)=>{//리스트 정보를 가져와서 카드생성 카드 한자정보,급수정보,아이템순서
-    return state.stateKanjiListInfo
-  })
+  // const listData = useSelector((state)=>{//리스트 정보를 가져와서 카드생성 카드 한자정보,급수정보,아이템순서
+  //   return state.stateKanjiListInfo
+  // })
+
+  const dataAdd = ()=>{
+    console.log("합쳐짐 ㅇㅇ")
+    dispatch({type:"KANJI_LIST_INFO",listInfo:listData.concat(data)});//데이터 보내서 카드 생성
+  }
 
   const [target, setTarget] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const getMoreItem = async () => {
     setIsLoaded(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));//시간끌기
-    getEgoWord(page,20);
+    await new Promise((resolve) => setTimeout(resolve, 1500));//시간끌기
+    dataAdd();
     setIsLoaded(false);
   };
 
@@ -44,35 +114,6 @@ export default function CardMake(){
       observer.observe(entry.target);
     }
   };
-
-  const endTarget = useRef();
-  
-
-  const dataSet = (data)=>{
-    initData = initData.concat(data);
-    dispatch({type:"KANJI_LIST_INFO",listInfo:initData});//데이터 보내서 카드 생성
-    page++;
-   }
- 
-   async function getEgoWord(page,size){
-     try{
-        const result = await wordList(page,size,"");
-        if (result.data.length !== 0){
-          dataSet(result.data);
-          console.log(result.data);
-        }else{
-          setIsLoaded(false);
-          setTarget(null);
-          console.log(page);
-          endTarget.current.hidden = false;
-        }
-        
-     }catch({response:{data:{result}}}){
-       console.log(result);
-     }
-   }
-
-   
 
   useEffect(() => {
     let observer;
@@ -103,23 +144,17 @@ export default function CardMake(){
         dataSource={listData}
         renderItem={item => (
           <List.Item>
-            <Card id={item.no} 
+            <Card id={item.dataNum} 
             className="hover:animate-eventhover active:animate-eventclick" 
-            style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"130px",boxShadow:"3px 3px gray"}}  
+            style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"110px",boxShadow:"3px 3px gray"}} 
+            title={item.kanji} 
             onClick={(e)=>{cardOnClick(e)}}
             >
-              <div className='font-bold text-xl text-center'>{item.word}</div>
-              <div>{"Level N"+item.grade}</div>
-              <div>{"뜻 :"+item.mean}</div>
+              {item.grade}
             </Card>
           </List.Item>
         )}
       />
-      <div ref={endTarget} hidden={true} className="h-10 text-center text-3xl text-stone-400">
-        <SmileOutlined style={{fontSize:"40px"}} /><br></br>
-          No More Data
-        
-        </div>
       <div ref={setTarget} className="Target-Element" style={{width:'100%',height:"80px"}}>
         {isLoaded && <Loader />}
       </div>
