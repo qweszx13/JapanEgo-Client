@@ -58,7 +58,7 @@ export default function LoginModal(){
       //await post 요청 dispatch 유저 정보 
       let dummyUserStatus = true;//더미 데이터 true= 신규 false= 구회원
       let dummyEmailStatus = false
-      if(dummyEmailStatus === false){//이메일 인증 안한 회원
+      if(dummyEmailStatus === true){//이메일 인증 안한 회원
         moveEmailModalDispatch();
         openNotification();
       }else{
