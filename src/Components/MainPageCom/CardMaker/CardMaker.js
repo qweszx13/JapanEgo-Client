@@ -20,7 +20,6 @@ export default function CardMake(){
   }
   
   function cardOnClick(e){
-    console.log(listData[e.currentTarget.id-1]);
     switchModalDispatch(listData[e.currentTarget.id-1]);
   }
 
@@ -33,8 +32,10 @@ export default function CardMake(){
 
   const getMoreItem = async () => {
     setIsLoaded(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));//시간끌기
-    getEgoWord(page,20);
+    if(!isEndScroll){
+      await new Promise((resolve) => setTimeout(resolve, 1000));//시간끌기
+      getEgoWord(page,20);
+    }
     setIsLoaded(false);
   };
 
@@ -47,8 +48,8 @@ export default function CardMake(){
   };
 
   const endTarget = useRef();
+  const [isEndScroll,setIsEndScroll] = useState(false);
   
-
   const dataSet = (data)=>{
     initData = initData.concat(data);
     dispatch({type:"KANJI_LIST_INFO",listInfo:initData});//데이터 보내서 카드 생성
@@ -60,11 +61,10 @@ export default function CardMake(){
         const result = await wordList(page,size,"");
         if (result.data.length !== 0){
           dataSet(result.data);
-          console.log(result.data);
         }else{
+          setIsEndScroll(true);
           setIsLoaded(false);
-          setTarget(null);
-          console.log(page);
+          setTarget(false);
           endTarget.current.hidden = false;
         }
         
@@ -76,16 +76,17 @@ export default function CardMake(){
    
 
   useEffect(() => {
-    let observer;
-    if (target) {
-      observer = new IntersectionObserver(onIntersect, {
-        threshold: 0.4,//40%보이면 
-      });
-      observer.observe(target);
-    }
-    return () => {
-      console.log("옵저버 사라짐");
-      observer && observer.disconnect();
+    if(!isEndScroll){
+      let observer;
+      if (target) {
+        observer = new IntersectionObserver(onIntersect, {
+          threshold: 0.4,//40%보이면 
+        });
+        observer.observe(target);
+      }
+      return () => {
+        observer && observer.disconnect();
+      }
     }
   }, [target  ]);
 
@@ -128,9 +129,8 @@ export default function CardMake(){
       />
       <div ref={endTarget} hidden={true} className="h-10 text-center text-3xl text-stone-400">
         <SmileOutlined style={{fontSize:"40px"}} /><br></br>
-          No More Data
-        
-        </div>
+          No More Data      
+      </div>
       <div ref={setTarget} className="Target-Element" style={{width:'100%',height:"80px"}}>
         {isLoaded && <Loader />}
       </div>
