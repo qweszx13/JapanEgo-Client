@@ -1,138 +1,10 @@
 import { Modal,Checkbox,Form } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
+import { wellcomeQuiz } from "../../../Apis/quiz/quiz";
 import { useNavigate } from 'react-router-dom';
 
 //import '../../../GlobalStyle/ModalStyle/antModalStyle.css';
-let dummyData = [
-  {
-    no:0,
-    word:"はい",
-    grade:1,
-  },
-  {
-    no:1,
-    word:"はい2",
-    grade:1,
-  },
-  {
-    no:2,
-    word:"はい3",
-    grade:1,
-  },
-  {
-    no:3,
-    word:"はい4",
-    grade:1,
-  },
-  {
-    no:4,
-    word:"はい5",
-    grade:1,
-  },
-  {
-    no:5,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:6,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:7,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:8,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:9,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:10,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:11,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:12,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:13,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:14,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:15,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:16,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:17,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:18,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:19,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:20,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:21,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:22,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:23,
-    word:"はい6",
-    grade:2,
-  },
-  {
-    no:24,
-    word:"はい6",
-    grade:2,
-  }
-]
-
-
 export default function TestModal(){
   const modalDispatch = useDispatch();
   const [form] = Form.useForm();
@@ -170,8 +42,17 @@ export default function TestModal(){
   const [pageShowData,setPageShowData] = useState([]);
 
   useEffect(()=>{
-    setPageShowData(makeCheckBox(dummyData));
+    getFirstQuiz();
   },[])
+
+  async function getFirstQuiz(){
+    try{
+      const result = await wellcomeQuiz();
+      setPageShowData(makeCheckBox(result.data));
+    }catch({response:{data:{result}}}){
+      console.log(result);
+    }
+  }
   
   const makeCheckBox = (data)=>{
     let result = [];
@@ -198,7 +79,7 @@ export default function TestModal(){
       <Modal
         open={modalSwitch}
         onCancel={handleCancel}
-        title="JapanEgo 를 더 편하게 이용하기 위헤 레벨 테스트를 진행합니다!"
+        title="JapanEgo 신규가입 Level 테스트!"
         footer={null}
         >
         <div>

@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: space-around;
   }
+  *{ font-family: "M PLUS Rounded 1c"; }
 `
 
 export default GlobalStyle;

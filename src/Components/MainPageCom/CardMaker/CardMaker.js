@@ -1,4 +1,4 @@
-import { Card, List } from 'antd';
+import { Card, List, Badge } from 'antd';
 import { useDispatch,useSelector } from "react-redux";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect, useState } from 'react';
@@ -20,6 +20,7 @@ export default function CardMake(){
   }
   
   function cardOnClick(e){
+    console.log(listData[e.currentTarget.id-1]);
     switchModalDispatch(listData[e.currentTarget.id-1]);
   }
 
@@ -88,6 +89,14 @@ export default function CardMake(){
     }
   }, [target  ]);
 
+  const ribbonColor = {
+    1:"red",
+    2:"pink",
+    3:"purple",
+    4:"volcano",
+    5:"cyan"
+  }
+
   
   return(
     <InfiniteScroll
@@ -101,17 +110,19 @@ export default function CardMake(){
         style={{padding:"8px",justifyContent:"center"}}
         size='small'
         dataSource={listData}
-        renderItem={item => (
+        renderItem={item =>   (
           <List.Item>
-            <Card id={item.no} 
-            className="hover:animate-eventhover active:animate-eventclick" 
-            style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"130px",boxShadow:"3px 3px gray"}}  
-            onClick={(e)=>{cardOnClick(e)}}
-            >
-              <div className='font-bold text-xl text-center'>{item.word}</div>
-              <div>{"Level N"+item.grade}</div>
-              <div>{"뜻 :"+item.mean}</div>
-            </Card>
+            <Badge.Ribbon text={"N"+item.grade} color={ribbonColor[item.grade]}>
+              <Card id={item.no} 
+              className="hover:animate-eventhover active:animate-eventclick" 
+              style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"180px",boxShadow:"3px 3px gray"}}  
+              onClick={(e)=>{cardOnClick(e)}}
+              >
+                <div className='font-bold text-xl text-center'>{item.word}</div>
+                <hr className='border-[2px]'></hr>
+                <div className='font-bold text-m text-center'>{item.mean}</div>
+              </Card>
+            </Badge.Ribbon>
           </List.Item>
         )}
       />
