@@ -49,8 +49,14 @@ export default function LoginModal(){
   const userPw = useRef();
   
   async function handleSuccess(){//폼 전송 성공
+   
     let userInfo = {email:userId.current.input.value,password:userPw.current.input.value}
+
     try{
+      const result = await login(userInfo);
+      console.log(result.data.token);
+      localStorage.setItem("Authorization", result.data.token);
+      console.log(localStorage.getItem("Authorization"))
       //console.log(await login(userInfo));
       //navigate('/Main');
       //alert("값 들어옴 ㅇㅇ");

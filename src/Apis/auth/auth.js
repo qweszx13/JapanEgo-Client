@@ -7,9 +7,9 @@ import http from "../instance/instance";
  * @property {string} password
  */
 
- export const login = (userInfo) => http.post("/auth/login", userInfo);
+ export const login = (userInfo) => http.post("/authenticate", userInfo);
 
- export const logout = () => http.post("/auth/logout")
+ export const logout = () => http.post("/logout")
 
 
 
