@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle `
   .ant-modal-content {
     border-radius: 30px;
     /* border: 10px solid black; */
@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: space-around;
   }
+  *{ font-family: "M PLUS Rounded 1c"; }
 `
 
 export default GlobalStyle;

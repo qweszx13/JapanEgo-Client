@@ -1,4 +1,4 @@
-import { Card, List } from 'antd';
+import { Card, List, Badge } from 'antd';
 import { useDispatch,useSelector } from "react-redux";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect, useState } from 'react';
@@ -32,8 +32,10 @@ export default function CardMake(){
 
   const getMoreItem = async () => {
     setIsLoaded(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));//시간끌기
-    getEgoWord(page,20);
+    if(!isEndScroll){
+      await new Promise((resolve) => setTimeout(resolve, 1000));//시간끌기
+      getEgoWord(page,20);
+    }
     setIsLoaded(false);
   };
 
@@ -46,8 +48,8 @@ export default function CardMake(){
   };
 
   const endTarget = useRef();
+  const [isEndScroll,setIsEndScroll] = useState(false);
   
-
   const dataSet = (data)=>{
     initData = initData.concat(data);
     dispatch({type:"KANJI_LIST_INFO",listInfo:initData});//데이터 보내서 카드 생성
@@ -59,11 +61,10 @@ export default function CardMake(){
         const result = await wordList(page,size,"");
         if (result.data.length !== 0){
           dataSet(result.data);
-          console.log(result.data);
         }else{
+          setIsEndScroll(true);
           setIsLoaded(false);
-          setTarget(null);
-          console.log(page);
+          setTarget(false);
           endTarget.current.hidden = false;
         }
         
@@ -75,18 +76,27 @@ export default function CardMake(){
    
 
   useEffect(() => {
-    let observer;
-    if (target) {
-      observer = new IntersectionObserver(onIntersect, {
-        threshold: 0.4,//40%보이면 
-      });
-      observer.observe(target);
-    }
-    return () => {
-      console.log("옵저버 사라짐");
-      observer && observer.disconnect();
+    if(!isEndScroll){
+      let observer;
+      if (target) {
+        observer = new IntersectionObserver(onIntersect, {
+          threshold: 0.4,//40%보이면 
+        });
+        observer.observe(target);
+      }
+      return () => {
+        observer && observer.disconnect();
+      }
     }
   }, [target  ]);
+
+  const ribbonColor = {
+    1:"red",
+    2:"pink",
+    3:"purple",
+    4:"volcano",
+    5:"cyan"
+  }
 
   
   return(
@@ -101,25 +111,26 @@ export default function CardMake(){
         style={{padding:"8px",justifyContent:"center"}}
         size='small'
         dataSource={listData}
-        renderItem={item => (
+        renderItem={item =>   (
           <List.Item>
-            <Card id={item.no} 
-            className="hover:animate-eventhover active:animate-eventclick" 
-            style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"130px",boxShadow:"3px 3px gray"}}  
-            onClick={(e)=>{cardOnClick(e)}}
-            >
-              <div className='font-bold text-xl text-center'>{item.word}</div>
-              <div>{"Level N"+item.grade}</div>
-              <div>{"뜻 :"+item.mean}</div>
-            </Card>
+            <Badge.Ribbon text={"N"+item.grade} color={ribbonColor[item.grade]}>
+              <Card id={item.no} 
+              className="hover:animate-eventhover active:animate-eventclick" 
+              style={{backgroundColor:"#c1d6f4",borderRadius:"10px",width:"180px",boxShadow:"3px 3px gray"}}  
+              onClick={(e)=>{cardOnClick(e)}}
+              >
+                <div className='font-bold text-xl text-center'>{item.word}</div>
+                <hr className='border-[2px]'></hr>
+                <div className='font-bold text-m text-center'>{item.mean}</div>
+              </Card>
+            </Badge.Ribbon>
           </List.Item>
         )}
       />
       <div ref={endTarget} hidden={true} className="h-10 text-center text-3xl text-stone-400">
         <SmileOutlined style={{fontSize:"40px"}} /><br></br>
-          No More Data
-        
-        </div>
+          No More Data      
+      </div>
       <div ref={setTarget} className="Target-Element" style={{width:'100%',height:"80px"}}>
         {isLoaded && <Loader />}
       </div>
