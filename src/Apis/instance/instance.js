@@ -6,6 +6,7 @@ const instance = axios.create({
   withCredentials: true,//포트번호 다름으로 생기는 Cors 에러 에관한 문제 해결
   headers:{
     "Content-Type": "multipart/form-data",
+    Authorization: `${localStorage.getItem('Authorization')}`
   }
 });
 

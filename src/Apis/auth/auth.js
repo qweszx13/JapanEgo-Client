@@ -11,5 +11,7 @@ import http from "../instance/instance";
 
  export const logout = () => http.post("/logout")
 
+ export const tesUrl = ()=> http.get("member/update_view")
+
 
 

@@ -60,9 +60,21 @@ export default function LoginModal() {
             password: userPw.current.input.value
         }
         try {
-            const result = await (userInfo);
+            const result = await login(userInfo);
             console.log(result.data.token);
             localStorage.setItem("Authorization", result.data.token);
+            const token = localStorage.getItem("Authorization");
+            console.log(token);
+            if (token.length > 0) {
+                try {
+                let jwt = JSON.parse(atob(token.split('.')[1]));
+                console.log(jwt);
+                console.log('my id: ' + jwt.sub);
+                // ^^ have a look at your jwt token- I only guess it's jwt.id
+                } catch (e) {
+                console.log('error: ' + e);
+                }
+            }
             console.log(localStorage.getItem("Authorization"))
             //console.log(await login(userInfo)); navigate('/Main'); alert("값 들어옴 ㅇㅇ");
             form.resetFields();
